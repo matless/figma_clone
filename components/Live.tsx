@@ -2,12 +2,14 @@ import { useMyPresence, useOthers } from "@/liveblocks.config";
 import LiveCursors from "./cursor/LiveCursors"
 import { useCallback, useEffect, useState } from "react";
 import CursorChat from "./cursor/CursorChat";
-import { CursorMode } from "@/types/type";
+import { CursorMode, Reaction } from "@/types/type";
+import ReactionSelector from "./reaction/ReactionButton";
 
 const Live = () => {
     const others = useOthers();
     const [{ cursor }, updatemyPresece] = useMyPresence() as any;
     const [cursorState, setCursorState] = useState({ mode: CursorMode.Hidden });
+    const [reactions, setReactions] = useState<Reaction[]>([])
 
     const handlePointerMove = useCallback((event: React.PointerEvent) => {
         setCursorState({ mode: CursorMode.Hidden});
@@ -70,7 +72,15 @@ const Live = () => {
                 setCursorState = {setCursorState}
                 updatemyPresece = {updatemyPresece}
                 />
-                )}
+            )}
+            
+            {cursorState.mode === CursorMode.ReactionSelector && (
+                <ReactionSelector
+                setReaction={(reaction) => {
+                    setReaction(reaction);
+                }}/>
+            )}
+
             <LiveCursors others={others}/>
         </div>
     )
