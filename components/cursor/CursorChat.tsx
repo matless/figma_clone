@@ -55,4 +55,4 @@ const CursorChat = ({cursor, cursorState, setCursorState, updateMyPresence} : Cu
     )
 }
 
-export default CursorChat
+export default CursorChat;

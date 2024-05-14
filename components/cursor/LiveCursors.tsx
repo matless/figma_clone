@@ -18,4 +18,4 @@ function LiveCursors({ others }: LiveCursorProps) {
     });
 }
 
-export default LiveCursors
+export default LiveCursors;

@@ -22,4 +22,4 @@ const Cursor = ({color, x, y, message}: Props) => {
     )
 }
 
-export default Cursor
+export default Cursor;
