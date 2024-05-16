@@ -46,6 +46,34 @@ const Live = () => {
                     }
                 ]))
             })
+    useEffect(() => {
+        const onKeyUp = (e: KeyboardEvent) => {
+            if(e.key === '/'){
+                setCursorState({ 
+                    mode: CursorMode.Chat, 
+                    previousMessage: null, 
+                    message: "" });
+            }else if(e.key === 'Escape'){
+                setCursorState({ mode: CursorMode.Hidden })
+            }else if(e.key === 'e'){
+                setCursorState({ mode: CursorMode.ReactionSelector })
+        };
+        const onKeyDown = (e: KeyboardEvent) => {
+            if(e.key === '/'){
+                e.preventDefault();
+            }
+        }
+
+    
+            window.addEventListener("keydown", onKeyDown);
+            window.addEventListener("keyup", onKeyUp);
+
+            return () => {
+                window.removeEventListener("keydown", onKeyDown);
+                window.removeEventListener("keyup", onKeyUp);
+            }
+            }}   , [updatemyPresece]);
+
 
     const handlePointerMove = useCallback((event: React.PointerEvent) => {
         event.preventDefault();
@@ -84,33 +112,7 @@ const Live = () => {
 
     }, [cursorState.mode, setCursorState]);
 
-    useEffect(() => {
-        const onKeyUp = (e: KeyboardEvent) => {
-            if(e.key === '/'){
-                setCursorState({ 
-                    mode: CursorMode.Chat, 
-                    previousMessage: null, 
-                    message: "" });
-            }else if(e.key === 'Escape'){
-                setCursorState({ mode: CursorMode.Hidden })
-            }else if(e.key === 'e'){
-                setCursorState({ mode: CursorMode.ReactionSelector })
-        };
-        const onKeyDown = (e: KeyboardEvent) => {
-            if(e.key === '/'){
-                e.preventDefault();
-            }
-        }
-
     
-            window.addEventListener("keydown", onKeyDown);
-            window.addEventListener("keyup", onKeyUp);
-
-            return () => {
-                window.removeEventListener("keydown", onKeyDown);
-                window.removeEventListener("keyup", onKeyUp);
-            }
-    }}   , [updatemyPresece]);
 
         const setReactions = useCallback((reaction: string) => {
             setCursorState({ mode: CursorMode.Reaction, reaction, isPressed: false });
