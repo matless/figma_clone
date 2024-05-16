@@ -86,18 +86,18 @@ const Live = () => {
 
     useEffect(() => {
         const onKeyUp = (e: KeyboardEvent) => {
-            if(e.key === "/"){
+            if(e.key === '/'){
                 setCursorState({ 
                     mode: CursorMode.Chat, 
                     previousMessage: null, 
                     message: "" });
-            }else if(e.key === "Escape"){
+            }else if(e.key === 'Escape'){
                 setCursorState({ mode: CursorMode.Hidden })
-            }else if(e.key === "e"){
+            }else if(e.key === 'e'){
                 setCursorState({ mode: CursorMode.ReactionSelector })
         };
         const onKeyDown = (e: KeyboardEvent) => {
-            if(e.key === "/"){
+            if(e.key === '/'){
                 e.preventDefault();
             }
         }
@@ -122,8 +122,7 @@ const Live = () => {
         onPointerLeave={handlePointerLeave}
         onPointerDown={handlePointerDown}
         onPointerUp={handlePointerUp}
-        className="h-[100vh] w-full flex justify-center items-center text-center 
-        text-2xl text-white border-2 border-green-500"
+        className="h-[100vh] w-full flex justify-center items-center text-center"
         >
             <h1 className="text-2xl text-white">Liveblocks Figma Clone</h1>
 
@@ -160,4 +159,4 @@ const Live = () => {
     )
 }
 
-export default Live
+export default Live;

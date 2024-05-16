@@ -3,7 +3,7 @@ import Cursor from './Cursor';
 import { COLORS } from '@/constants';
 
 
-function LiveCursors({ others }: LiveCursorProps) {
+const LiveCursors = ({ others }: LiveCursorProps) => {
     return others.map(({ connectionId, presence }) => {
         if (!presence?.cursor) return null;
 
