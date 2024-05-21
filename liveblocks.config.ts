@@ -1,8 +1,11 @@
-import { LiveList, LiveMap, createClient } from "@liveblocks/client";
+import { LiveMap, createClient } from "@liveblocks/client";
 import { createRoomContext, createLiveblocksContext } from "@liveblocks/react";
+import { ReactionEvent } from "./types/type";
   
 const client = createClient({
-   publicApiKey: "pk_dev_uMBp_SYppYVZ9zdkcAr21yrJMtadAa_MqWCIeO94SHyL_TKwiKTwhaO08r1MjKB_"});
+  throttle: 16,
+  publicApiKey: process.env.NEXT_PUBLIC_LIVEBLOCKS_PUBLIC_KEY!,
+});
  
 
 
@@ -10,8 +13,8 @@ const client = createClient({
 // and that will automatically be kept in sync. Accessible through the
 // `user.presence` property. Must be JSON-serializable.
 type Presence = {
-  // cursor: { x: number, y: number } | null,
-  // ...
+   cursor: { x: number, y: number } | null,
+  message: string | null;
 };
 
 // Optionally, Storage represents the shared document that persists in the
@@ -34,14 +37,14 @@ type UserMeta = {
 
 // Optionally, the type of custom events broadcast and listened to in this
 // room. Use a union for multiple events. Must be JSON-serializable.
-type RoomEvent = {
-  // type: "NOTIFICATION",
-  // ...
-};
-
+type RoomEvent = ReactionEvent;
 // Optionally, when using Comments, ThreadMetadata represents metadata on
 // each thread. Can only contain booleans, strings, and numbers.
 export type ThreadMetadata = {
+  y: any;
+  x: any;
+  zIndex: number;
+  resolved: any;
   // resolved: boolean;
   // quote: string;
   // time: number;
