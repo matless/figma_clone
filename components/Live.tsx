@@ -16,6 +16,7 @@ import {
   } from "@/components/ui/context-menu";
 import { shortcuts } from "@/constants";
 import { Comments } from "./comments/Comments";
+
   
 
 type Props = {canvasRef: React.MutableRefObject<HTMLCanvasElement | null>
@@ -203,7 +204,9 @@ const Live = ({canvasRef, undo, redo } : Props) => {
             )}
 
             <LiveCursors />
+
             <Comments />
+            
 
             
 

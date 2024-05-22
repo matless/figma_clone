@@ -1,5 +1,5 @@
-import { CursorChatProps, CursorMode } from '@/types/type'
-import CursorSVG from '@/public/assets/CursorSVG'
+import { CursorChatProps, CursorMode } from "@/types/type";
+import CursorSVG from "@/public/assets/CursorSVG";
 
 const CursorChat = ({cursor, cursorState, setCursorState, updateMyPresence} : CursorChatProps) => {
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -8,11 +8,12 @@ const CursorChat = ({cursor, cursorState, setCursorState, updateMyPresence} : Cu
             mode: CursorMode.Chat,
             previousMessage: null,
             message: e.target.value,
-        })
+        });
+    };
 
         
 
-    }
+    
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === "Enter") {
             setCursorState({
@@ -32,12 +33,13 @@ const CursorChat = ({cursor, cursorState, setCursorState, updateMyPresence} : Cu
             {cursorState.mode === CursorMode.Chat && (
                 <>
                 <CursorSVG color="#000"/>
-                <div className="absolute left-2 top-5 bg-blue-500 px-4, py-2 text-sm leading-relaxed text-white rounded-[20px]" onKeyUp={(e) => e.stopPropagation()}>
-                    {cursorState.previousMessage && (
+                <div className="absolute left-2 top-5 bg-blue-500 px-4, py-2 text-sm leading-relaxed text-white " onKeyUp={(e) => e.stopPropagation()}
+                style={{borderRadius: 20,}}>
+                    {cursorState.previousMessage && 
                         <div>
                             {cursorState.previousMessage}
                         </div>
-                    )}
+                    }
                     <input className="z-10 w-60 border-none bg-transparent text-white placeholder-blue-300 outline-none" 
                     autoFocus = {true}
                     onChange={handleChange}
@@ -52,7 +54,7 @@ const CursorChat = ({cursor, cursorState, setCursorState, updateMyPresence} : Cu
                 </>)}
 
         </div>
-    )
-}
+    );
+};
 
 export default CursorChat;
